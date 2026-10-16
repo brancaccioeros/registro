@@ -20,6 +20,14 @@ export class Elenco {
     return tutti.filter(s => s.classe.toUpperCase() === filtro);
   });
 
+  // src/app/elenco/elenco.ts (estratto del computed)
+readonly mediaClasse = computed(() => {
+  const lista = this.filtrati();
+  if (lista.length === 0) return 0;
+  const somma = lista.reduce((acc, s) => acc + s.mediaVoti, 0);
+  return somma / lista.length;
+});
+
   rimuovi(id: number): void {
     this.studentiService.rimuovi(id);
   }
